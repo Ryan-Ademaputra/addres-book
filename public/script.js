@@ -42,7 +42,7 @@ const dataContacts = [
   },
 
   {
-    id: 2,
+    id: 4,
     fullName: "Dilan",
     email: "putradilan@gmail.com",
     phoneNumber: "+6285860987806",
@@ -53,17 +53,16 @@ const dataContacts = [
   },
 
   {
-    id: 2,
+    id: 5,
     fullName: "roma",
     email: "ademaputra@gmail.com",
     phoneNumber: "+6285860987806",
     label: "work",
     birthday: "15-09-2001",
-    avatarURL: "", cd36f1dd9f1404909a9515db4a7f9f7f576119f5
+    avatarURL: "",
     address: "",
   },
 ];
-
 
 function addContact(dataContacts, newContact) {
   dataContacts.push(newContact);
@@ -82,8 +81,9 @@ function displayContacts(dataContacts) {
     console.log(formatDataContacts(dataContact));
   });
 }
+//call the funcation add data
 addContact(dataContacts, {
-  id: 3,
+  id: 6,
   fullName: "Ryan Ademaputra",
   email: "ademaputraryan@gmail.com",
   phoneNumber: "+6285860987806",
@@ -93,14 +93,34 @@ addContact(dataContacts, {
   address: "",
 });
 
+// funcation edit data
+function editContact(id, updatedInfo) {
+  const contactIndex = dataContacts.findIndex((contact) => contact.id === id);
+  if (contactIndex === -1) {
+    console.error("Contact not found");
+    return;
+  }
+  dataContacts[contactIndex] = {
+    ...dataContacts[contactIndex],
+    ...updatedInfo,
+  };
+  console.log("Contact updated:", dataContacts[contactIndex]);
+}
+// Call the function edit data
+editContact(2, { fullName: "Obbyphy rererereerere", email: "Obby@gmail.com" });
+
+// funcation delete data
+function deleteContact(id) {
+  const contactIndex = dataContacts.findIndex((contact) => contact.id === id);
+  if (contactIndex === -1) {
+    console.log("contact not found");
+    return;
+  }
+  dataContacts.splice(contactIndex, 1);
+  console.log("Contact deleted. Remaining contacts:", dataContacts);
+}
+// Call the function delete data
+deleteContact(1);
+
 // display data contact
 displayContacts(dataContacts);
-
-localStorage.setItem("data", [
-  {
-    nama: "Ryan Ademaputra",
-    umur: "18",
-  },
-]);
-
-console.log(dataContacts);
